@@ -1,8 +1,15 @@
 #include <websocketpp/config/asio_no_tls.hpp>
-
 #include <websocketpp/server.hpp>
 
 #include <iostream>
+#include <stdio.h>
+
+#include <QtCore>
+#include <QCoreApplication>
+
+#include <infothread.h>
+
+
 
 typedef websocketpp::server<websocketpp::config::asio> server;
 
@@ -13,18 +20,31 @@ using websocketpp::lib::bind;
 // pull out the type of messages sent by our config
 typedef server::message_ptr message_ptr;
 
-// Define a callback to handle incoming messages
+infoThread t;
+
+void runScript(){
+    qDebug()<<"From main thread: "<<QThread::currentThreadId();
+
+    t.start();
+}
+
+// Callback for handling incoming messages
 void on_message(server* s, websocketpp::connection_hdl hdl, message_ptr msg) {
     std::cout << "on_message called with hdl: " << hdl.lock().get()
               << " and message: " << msg->get_payload()
               << std::endl;
 
-    // check for a special command to instruct the server to stop listening so
-    // it can be cleanly exited.
     if (msg->get_payload() == "stop-listening") {
         s->stop_listening();
         return;
     }
+
+    if (msg->get_payload() == "run")
+    {
+        //run another thread for getting data
+        runScript();
+    }
+
 
     try {
         s->send(hdl, msg->get_payload(), msg->get_opcode());
@@ -34,9 +54,14 @@ void on_message(server* s, websocketpp::connection_hdl hdl, message_ptr msg) {
     }
 }
 
-int main() {
+
+
+int main(int argc, char *argv[]) {
+
+    QCoreApplication a(argc, argv);
     // Create a server endpoint
     server echo_server;
+
 
     try {
         // Set logging settings
@@ -62,4 +87,5 @@ int main() {
     } catch (...) {
         std::cout << "other exception" << std::endl;
     }
+    return a.exec();
 }
