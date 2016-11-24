@@ -39,6 +39,12 @@ function clickSend(){
     doSend(document.getElementById("inputText").value);
 }
 
+function runScript()
+{
+    doSend("run");
+}
+
+
 function clickClose(){
     websocket.close();
 }
