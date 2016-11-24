@@ -18,8 +18,8 @@ LIBS += \
 INCLUDEPATH += /usr/include/websocketpp/
 
 HEADERS += \
-    echo_handler.hpp \
-    infothread.h
+    infothread.h \
+    echo_handler.h
 
 DISTFILES += \
     index.html \

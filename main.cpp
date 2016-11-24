@@ -24,7 +24,7 @@ infoThread t;
 
 void runScript(){
     qDebug()<<"From main thread: "<<QThread::currentThreadId();
-
+    t.script = "./writeToCout";
     t.start();
 }
 

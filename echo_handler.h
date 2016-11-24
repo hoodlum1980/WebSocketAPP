@@ -1,4 +1,10 @@
-#ifndef ECHO_HANDLER_H
-#define ECHO_HANDLER_H
+#ifndef WEBSOCKETPP_ECHO_SERVER_HANDLER_HPP
+#define WEBSOCKETPP_ECHO_SERVER_HANDLER_HPP
 
-#endif // ECHO_HANDLER_H
+class echo_handler : public server::handler {
+    void on_message(connection_ptr con, std::string msg) {
+        con->write(msg);
+    }
+};
+
+#endif // WEBSOCKETPP_ECHO_SERVER_HANDLER_HPP

@@ -20,7 +20,7 @@ void infoThread::run()
             char buf[BUFSIZE];
             FILE *fp;
 
-            if ((fp = popen("./writeToCout", "r")) == NULL) {
+            if ((fp = popen(this->script, "r")) == NULL) {
                 printf("Error opening pipe!\n");
 
             }

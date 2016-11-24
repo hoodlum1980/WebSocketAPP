@@ -11,6 +11,9 @@ class infoThread : public QThread
 public:
     infoThread();
 
+
+    const char *script;
+
 public slots:
     // mozna nebude signal
     void stop(){
@@ -18,6 +21,9 @@ public slots:
         QMutexLocker locker(&m_mutex);
         m_stop=true;
     }
+
+signals:
+    void sendOutput(char* data);
 
 private:
     QMutex m_mutex;

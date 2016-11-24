@@ -2,7 +2,7 @@
 #define HANDLER_H
 
 
-class handler : public QObject
+class handler : public server::handler
 {
     Q_OBJECT
 public:
