@@ -5,7 +5,6 @@
 
 #define BUFSIZE 128
 
-
 class infoThread : public QThread
 {
 public:
@@ -13,6 +12,7 @@ public:
 
 
     const char *script;
+
 
 public slots:
     // mozna nebude signal

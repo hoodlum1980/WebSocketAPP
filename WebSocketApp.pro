@@ -10,7 +10,8 @@ CONFIG -= app_bundle
 TEMPLATE = app
 
 SOURCES += main.cpp \
-    infothread.cpp
+    infothread.cpp \
+    messageserver.cpp
 
 LIBS += \
        -lboost_system\
@@ -19,7 +20,8 @@ INCLUDEPATH += /usr/include/websocketpp/
 
 HEADERS += \
     infothread.h \
-    echo_handler.h
+    echo_handler.h \
+    messageserver.h
 
 DISTFILES += \
     index.html \
