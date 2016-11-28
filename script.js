@@ -46,7 +46,8 @@ function runScript()
 
 
 function clickClose(){
-    websocket.close();
+    websocket.send("stop-listening");
+    //websocket.close();
 }
 
 function onMessage(evt) {

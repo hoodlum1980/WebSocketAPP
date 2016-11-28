@@ -21,32 +21,33 @@ messageServer::messageServer()
 
 }
 
-
-void messageServer::runScript()
+messageServer::~messageServer()
 {
-    qDebug()<<"From main thread: "<<QThread::currentThreadId();
-    t = new infoThread();
-    t->script = "./writeToCout";
-    QObject::connect( t, SIGNAL(sendOutput(char*)), this, SLOT(sendOutputToWeb(char*) ));
-    t->start();
+;
 }
 
 void messageServer::on_message(websocketpp::connection_hdl hdl, message_ptr msg)
 {
+    this->cn = hdl;
 
     std::cout << "on_message called with hdl: " << hdl.lock().get()
               << " and message: " << msg->get_payload()
               << std::endl;
 
-//    if (msg->get_payload() == "stop-listening") {
-//        s->stop_listening();
-//        return;
-//    }
+    if (msg->get_payload() == "stop-listening") {
+        qDebug() << "radoby stop";
+        t->m_stop = true;
+        t->stop();
+        t->exit();
+        //mes_server.stop_listening();
 
-//    if (msg->get_payload() == "run")
-//    {
+        return;
+    }
 
-//    }
+    if (msg->get_payload() == "run")
+    {
+        this->runScript();
+    }
 
 
     try {
@@ -55,11 +56,6 @@ void messageServer::on_message(websocketpp::connection_hdl hdl, message_ptr msg)
         std::cout << "Echo failed because: " << e
                   << "(" << e.message() << ")" << std::endl;
     }
-}
-
-void sendOutputToWeb(char* data)
-{
-
 }
 
 void messageServer::runServer()
@@ -92,4 +88,14 @@ void messageServer::runServer()
     } catch (...) {
         std::cout << "other exception" << std::endl;
     }
+}
+
+
+void messageServer::runScript()
+{
+    qDebug()<<"From main thread: "<<QThread::currentThreadId();
+    t = new infoThread();
+    t->script = "./writeToCout";
+    QObject::connect(t, SIGNAL(sendOutput()), this, SLOT(sendOutputToWeb() ));
+    t->start();
 }
