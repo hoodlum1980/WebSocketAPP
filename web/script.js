@@ -3,10 +3,10 @@ var output;
 
 function init() {
    output = document.getElementById("script_one");
-   testWebSocket();
+   startWebSockets();
 }
 
-function testWebSocket() {
+function startWebSockets() {
    websocket = new WebSocket(wsUri);
 
    websocket.onopen = function(evt) {
@@ -23,7 +23,7 @@ function testWebSocket() {
 }
 
 function onOpen(evt) {
-   writeToScreen("CONNECTED");
+   writeToScreen('<span class="label label-warning">Connected</span>');
    //doSend("WebSocket rocks");
 }
 
@@ -32,9 +32,25 @@ function clickSend(){
     doSend(document.getElementById("inputText").value);
 }
 
-function runScript()
+function runScript(value)
 {
-    doSend("run");
+    if (value == 1)
+	{
+	doSend("run_1");
+	}
+    if (value == 2)
+	{
+	doSend("run_2");
+	}
+    if (value == 3)
+	{
+	doSend("run_3");
+	}
+    if (value == 4)
+	{
+	doSend("run_4");
+	}
+
 }
 
 
@@ -44,16 +60,15 @@ function clickClose(){
 }
 
 function onMessage(evt) {
-   writeToScreen('<span style = "color: blue;">RESPONSE: ' +
-      evt.data+'</span>');
+   writeToScreen('<span class="label label-primary"><strong> \> </strong>'+evt.data+'</span>');
 }
 
 function onError(evt) {
-   writeToScreen('<span style="color: red;">ERROR:</span> ' + evt.data);
+   writeToScreen('<span class="label label-danger"><strong>Error: </strong>'+evt.data+'</span>');
 }
 
 function doSend(message) {
-   writeToScreen("SENT: " + message);
+   writeToScreen('<span class="label label-success">'+message+'</span>');
    websocket.send(message);
 }
 

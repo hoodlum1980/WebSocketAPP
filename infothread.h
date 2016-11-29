@@ -23,12 +23,12 @@ public slots:
     {
         qDebug()<<"Thread::stop called from main thread: "<<currentThreadId();
         //QMutexLocker locker(&m_mutex);
-        m_stop = true;
+        this->m_stop = true;
     }
 
 
 signals:
-    void sendOutput(int data);
+    void sendOutput(char* data);
 
 private:
     QMutex m_mutex;

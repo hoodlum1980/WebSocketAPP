@@ -44,9 +44,21 @@ void messageServer::on_message(websocketpp::connection_hdl hdl, message_ptr msg)
         return;
     }
 
-    if (msg->get_payload() == "run")
+    if (msg->get_payload() == "run_1")
     {
-        this->runScript();
+        this->runScript(1);
+    }
+    else if(msg->get_payload() == "run_2")
+    {
+        this->runScript(2);
+    }
+    else if(msg->get_payload() == "run_3")
+    {
+        this->runScript(3);
+    }
+    else if(msg->get_payload() == "run_4")
+    {
+        this->runScript(4);
     }
 
 
@@ -91,14 +103,43 @@ void messageServer::runServer()
 }
 
 
-void messageServer::runScript()
+void messageServer::runScript(int number)
 {
-    qDebug()<<"From main thread: "<<QThread::currentThreadId();
-    t = new infoThread();
-    t->script = "./writeToCout";
 
-    this->connect(t, SIGNAL(sendOutput(int)), this, SLOT(sendOutputToWeb(int)), Qt::DirectConnection);
-    t->start();
+    switch (number) {
+    case 1:
+        qDebug()<<"From main thread: "<<QThread::currentThreadId();
+        t = new infoThread();
+        t->script = "./writeToCout";
+        this->connect(t, SIGNAL(sendOutput(char*)), this, SLOT(sendOutputToWeb(char*)), Qt::DirectConnection);
+        t->start();
+        break;
+    case 2:
+        qDebug()<<"From main thread: "<<QThread::currentThreadId();
+        t = new infoThread();
+        t->script = "./writeToCout";
+        this->connect(t, SIGNAL(sendOutput(char*)), this, SLOT(sendOutputToWeb(char*)), Qt::DirectConnection);
+        t->start();
+        break;
+    case 3:
+        qDebug()<<"From main thread: "<<QThread::currentThreadId();
+        t = new infoThread();
+        t->script = "./writeToCout";
+        this->connect(t, SIGNAL(sendOutput(char*)), this, SLOT(sendOutputToWeb(char*)), Qt::DirectConnection);
+        t->start();
+        break;
+    case 4:
+        qDebug()<<"From main thread: "<<QThread::currentThreadId();
+        t = new infoThread();
+        t->script = "./writeToCout";
+        this->connect(t, SIGNAL(sendOutput(char*)), this, SLOT(sendOutputToWeb(char*)), Qt::DirectConnection);
+        t->start();
+        break;
+    default:
+        break;
+    }
+
+
 }
 
 

@@ -34,13 +34,13 @@ public:
     void pokus();
 
 private:
-    void runScript();
+    void runScript(int number);
 
 public slots:
-    void sendOutputToWeb(int data){
+    void sendOutputToWeb(char* data){
         qDebug() << "prisla data: "<<data;
         //std::cout << "kulovy";
-        const std::string test = "test";
+        const std::string test(data);
         mes_server.send(cn,test,websocketpp::frame::opcode::text);
     }
 
