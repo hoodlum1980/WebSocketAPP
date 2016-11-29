@@ -14,15 +14,21 @@ public:
     ~infoThread();
 
     const char *script;
-    void stop();
+
     bool m_stop;
+    int test;
 
 public slots:
-
+    void stop()
+    {
+        qDebug()<<"Thread::stop called from main thread: "<<currentThreadId();
+        //QMutexLocker locker(&m_mutex);
+        m_stop = true;
+    }
 
 
 signals:
-    void sendOutput();
+    void sendOutput(int data);
 
 private:
     QMutex m_mutex;

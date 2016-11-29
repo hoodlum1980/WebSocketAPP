@@ -96,6 +96,22 @@ void messageServer::runScript()
     qDebug()<<"From main thread: "<<QThread::currentThreadId();
     t = new infoThread();
     t->script = "./writeToCout";
-    QObject::connect(t, SIGNAL(sendOutput()), this, SLOT(sendOutputToWeb() ));
+
+    this->connect(t, SIGNAL(sendOutput(int)), this, SLOT(sendOutputToWeb(int)), Qt::DirectConnection);
     t->start();
+}
+
+
+void messageServer::pokus()
+{
+    int old = -1;
+    while(1){
+        if (old != t->test){
+        qDebug() << t->test;
+        old = t->test;
+        }
+
+        if (t->m_stop) break;
+    }
+
 }

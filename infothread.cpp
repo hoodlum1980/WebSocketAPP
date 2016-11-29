@@ -1,6 +1,7 @@
 #include "infothread.h"
 
 #include <QtCore>
+#include <QObject>
 
 
 
@@ -9,14 +10,20 @@ infoThread::infoThread()
     m_stop = false;
 }
 
+infoThread::~infoThread()
+{
+;
+}
+
+
+
 void infoThread::run()
 {
     qDebug()<<"From script thread: "<<currentThreadId();
     while (1) {
         {
-            QMutexLocker locker(&m_mutex);
+            //QMutexLocker locker(&m_mutex);
             if (m_stop) break;
-
             char buf[BUFSIZE];
             FILE *fp;
 
@@ -25,9 +32,17 @@ void infoThread::run()
 
             }
 
-            while (fgets(buf, BUFSIZE, fp) != NULL) {
+            while (fgets(buf, BUFSIZE, fp) != NULL ) {
                 // Do whatever you want here...
+                int pokus = 1000;
+                emit sendOutput(pokus);
                 printf("OUTPUT: %s", buf);
+                qDebug() << "test: " << m_stop;
+                if (m_stop){
+                    //pclose(fp);
+                    break;
+                }
+
             }
 
             if(pclose(fp))  {
@@ -35,6 +50,7 @@ void infoThread::run()
 
             }
         }
-        msleep(10);
+        msleep(1000);
     }
 }
+

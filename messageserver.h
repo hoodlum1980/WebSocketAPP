@@ -31,13 +31,14 @@ public:
 
     void runServer();
     void on_message(websocketpp::connection_hdl hdl, message_ptr msg);
+    void pokus();
 
 private:
     void runScript();
 
 public slots:
-    void sendOutputToWeb(){
-        qDebug() << "prisla data: ";
+    void sendOutputToWeb(int data){
+        qDebug() << "prisla data: "<<data;
         //std::cout << "kulovy";
         const std::string test = "test";
         mes_server.send(cn,test,websocketpp::frame::opcode::text);
