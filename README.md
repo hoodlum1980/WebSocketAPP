@@ -1,6 +1,6 @@
 # WebSocketAPP
 
-Application which provides running C++ scripts via web browser using websockets.
+Application which provides starting C++ scripts via web browser using websockets.
 
 This application has server side, where is C++ program which handles websocket messages. This server runs the other C/C++ programs each in the new Thread. Standard output from these programs is sended to the website.
 
