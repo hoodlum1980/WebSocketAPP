@@ -14,3 +14,6 @@ In the future, it should has option to add script dynamic. And there will be opt
 
 
 ![Alt text](Screenshot_2016-11-30_18-41-20.png?raw=true "screenshot web")
+
+
+This projects uses Websocketpp, Qt C/C++ libraries and Bootstrap for Webpages.
