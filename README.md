@@ -11,3 +11,6 @@ In this version number of the maximum running scripts is setted to 4. "Names" of
 In the future, it should has option to add script dynamic. And there will be option for sending name of the script which u want to run in specific thread.
 
 ![Alt text](Screenshot_2016-11-30_18-22-56.png?raw=true "screenshot web")
+
+
+![Alt text](Screenshot_2016-11-30_18-41-20.png?raw=true "screenshot web")
