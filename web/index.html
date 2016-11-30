@@ -56,7 +56,8 @@
 
       <div class="starter-template">
         <h1>Run Script Run!</h1>
-        <p class="lead">This webpage was designed for controlling C++ scripts and showing their outputs.</p>
+        <p class="lead">This webpage is used for controlling scripts in C++. 
+		</br>Outputs of the scripts are sended via websockets directly to this page</p>
       </div>
 
 
@@ -66,10 +67,10 @@
 	  <h2>Script 1</h2>
 	  <p> <input type="text" id="inputText"> </p>
 	  <p>
-		<button type="button" class="btn btn-danger" onclick="clickClose()">Stop Script</button>
+		<button type="button" class="btn btn-danger" onclick="clickStop(1)">Stop Script</button>
 		<button type="button" class="btn btn-success" onclick="runScript(1)">Run Script</button>
 	  </p>
-	  <div id="script_one">
+	  <div class="my-panel" id="script_1">
 	  </div>
 
 	</div>
@@ -77,30 +78,30 @@
 	  <h2>Script 2</h2>
 	  <p> <input type="text" id="inputText"> </p>
 	  <p>
-		<button type="button" class="btn btn-danger" onclick="clickClose()">Stop Script</button>
+		<button type="button" class="btn btn-danger" onclick="clickStop(2)">Stop Script</button>
 		<button type="button" class="btn btn-success" onclick="runScript(2)">Run Script</button>
 	  </p>
-	  <div id="script_two">
+	  <div class="my-panel" id="script_2">
 	  </div>
-        </div>
+    </div>
 	<div class="col-lg-3">
 	  <h2>Script 3</h2>
 	  <p> <input type="text" id="inputText"> </p>
 	  <p>
-		<button type="button" class="btn btn-danger" onclick="clickClose()">Stop Script</button>
+		<button type="button" class="btn btn-danger" onclick="clickStop(3)">Stop Script</button>
 		<button type="button" class="btn btn-success" onclick="runScript(3)">Run Script</button>
 	  </p>
-	  <div id="script_three">
+	  <div class="my-panel" id="script_3">
 	  </div>
 	</div>
 	<div class="col-lg-3">
 	  <h2>Script 4</h2>
 	  <p> <input type="text" id="inputText"> </p>
 	  <p>
-		<button type="button" class="btn btn-danger" onclick="clickClose()">Stop Script</button>
+		<button type="button" class="btn btn-danger" onclick="clickStop(4)">Stop Script</button>
 		<button type="button" class="btn btn-success" onclick="runScript(4)">Run Script</button>
 	  </p>
-	  <div id="script_four">
+	  <div class="my-panel" id="script_4">
 	  </div>
 	</div>
 <!--
@@ -108,10 +109,10 @@
 	  <h2>Script 5</h2>
 	  <p> <input type="text" id="inputText"> </p>
 	  <p>
-		<button type="button" class="btn btn-danger" onclick="clickClose()">Stop Script</button>
-		<button type="button" class="btn btn-success" onclick="runScript()">Run Script</button>
+		<button type="button" class="btn btn-danger" onclick="clickStop(5)">Stop Script</button>
+		<button type="button" class="btn btn-success" onclick="runScript(5)">Run Script</button>
 	  </p>
-	  <div id="script_five">
+	  <div id="script_5">
 	  </div>
       </div>
 -->

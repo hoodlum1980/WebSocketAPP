@@ -2,7 +2,7 @@ var wsUri = "ws://127.0.0.1:9002/";
 var output;
 
 function init() {
-   output = document.getElementById("script_one");
+   output = document.getElementById("script_1");
    startWebSockets();
 }
 
@@ -28,39 +28,30 @@ function onOpen(evt) {
 }
 
 function clickSend(){
-    
     doSend(document.getElementById("inputText").value);
 }
 
 function runScript(value)
 {
-    if (value == 1)
-	{
-	doSend("run_1");
-	}
-    if (value == 2)
-	{
-	doSend("run_2");
-	}
-    if (value == 3)
-	{
-	doSend("run_3");
-	}
-    if (value == 4)
-	{
-	doSend("run_4");
-	}
-
+	output = document.getElementById("script_"+value);
+	output.innerHTML = "";
+	doSend("run_"+value);
 }
 
 
-function clickClose(){
-    websocket.send("stop-listening");
+function parseData(data){
+	var splited = data.split("/");
+	output = document.getElementById("script_"+splited[1]);
+    writeToScreen('<span class="label label-primary"><strong> \> </strong>'+splited[0]+'</span>');
+}
+
+function clickStop(value){
+    websocket.send("stop_"+value);
     //websocket.close();
 }
 
 function onMessage(evt) {
-   writeToScreen('<span class="label label-primary"><strong> \> </strong>'+evt.data+'</span>');
+	parseData(evt.data);
 }
 
 function onError(evt) {

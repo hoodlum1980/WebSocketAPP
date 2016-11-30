@@ -14,9 +14,8 @@ public:
     ~infoThread();
 
     const char *script;
-
+    int idx;
     bool m_stop;
-    int test;
 
 public slots:
     void stop()
@@ -28,7 +27,7 @@ public slots:
 
 
 signals:
-    void sendOutput(char* data);
+    void sendOutput(char* data, int idx_th);
 
 private:
     QMutex m_mutex;

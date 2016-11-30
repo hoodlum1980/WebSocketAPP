@@ -5,3 +5,11 @@ body {
   padding: 40px 15px;
   text-align: center;
 }
+
+.my-panel{
+  border: 1px solid #cacaca;
+  border-radius: 3px;
+  padding-left: 2px;
+  padding-right: 2px;
+  
+}

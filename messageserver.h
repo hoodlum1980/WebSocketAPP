@@ -20,7 +20,7 @@ public:
     messageServer();
     ~messageServer();
 
-    infoThread* t;
+    infoThread* t[4];
 
 
     typedef websocketpp::server<websocketpp::config::asio> server;
@@ -31,17 +31,17 @@ public:
 
     void runServer();
     void on_message(websocketpp::connection_hdl hdl, message_ptr msg);
-    void pokus();
 
 private:
     void runScript(int number);
 
 public slots:
-    void sendOutputToWeb(char* data){
+    void sendOutputToWeb(char* data, int idx_th){
         qDebug() << "prisla data: "<<data;
-        //std::cout << "kulovy";
-        const std::string test(data);
-        mes_server.send(cn,test,websocketpp::frame::opcode::text);
+        std::stringstream ss;
+        ss << data << "/" << idx_th;
+        std::string output = ss.str();
+        mes_server.send(cn,output,websocketpp::frame::opcode::text);
     }
 
 };

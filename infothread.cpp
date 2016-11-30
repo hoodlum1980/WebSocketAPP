@@ -35,7 +35,7 @@ void infoThread::run()
             while (fgets(buf, BUFSIZE, fp) != NULL ) {
                 // Do whatever you want here...
                 int pokus = 1000;
-                emit sendOutput(buf);
+                emit sendOutput(buf, this->idx);
                 printf("OUTPUT: %s", buf);
                 qDebug() << "stop? " << m_stop;
                 if (m_stop){
@@ -47,7 +47,7 @@ void infoThread::run()
 
             if(pclose(fp))  {
                 printf("Command not found or exited with error status\n");
-                emit sendOutput("dokonceno");
+                emit sendOutput("dokonceno", this->idx);
             }
         }
         msleep(1000);
